@@ -9,7 +9,7 @@ function App() {
     <Router>
     <Routes>
       <Route path="/shift" element={<ShiftManagement/>}></Route>
-      <Route path="/addtask" element={<AddTaskForm/>}></Route>
+      <Route path="/" element={<AddTaskForm/>}></Route>
       <Route path="/report" element={<TaskReport/>}></Route>
     </Routes>
     </Router>

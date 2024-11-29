@@ -9,13 +9,13 @@ const AddTaskForm = () => {
   const [shift, setShift] = useState('Morning');
   const [status, setStatus] = useState('Pending');
   const [priority, setPriority] = useState('Medium');
-  const [handoverNotes, setHandoverNotes] = useState(''); 
+  const [handoverNotes, setHandoverNotes] = useState(''); // New state for handover notes
 
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTask = { title, details, source, shift, status, priority, handoverNotes }; 
+    const newTask = { title, details, source, shift, status, priority, handoverNotes }; // Include handoverNotes
     dispatch(addTask(newTask));
     setTitle('');
     setDetails('');

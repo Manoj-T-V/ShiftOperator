@@ -9,13 +9,13 @@ const AddTaskForm = () => {
   const [shift, setShift] = useState('Morning');
   const [status, setStatus] = useState('Pending');
   const [priority, setPriority] = useState('Medium');
-  const [handoverNotes, setHandoverNotes] = useState(''); 
+  const [handoverNotes, setHandoverNotes] = useState(''); // New state for handover notes
 
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTask = { title, details, source, shift, status, priority, handoverNotes }; 
+    const newTask = { title, details, source, shift, status, priority, handoverNotes }; // Include handoverNotes
     dispatch(addTask(newTask));
     setTitle('');
     setDetails('');
@@ -23,10 +23,10 @@ const AddTaskForm = () => {
     setShift('Morning');
     setStatus('Pending');
     setPriority('Medium');
-    setHandoverNotes(''); 
+    setHandoverNotes(''); // Reset handover notes
   };
 
-
+  // Inline styles for form and inputs
   const formContainerStyle = {
     padding: "20px",
     fontFamily: "Arial, sans-serif",
@@ -147,6 +147,7 @@ const AddTaskForm = () => {
         </select>
       </div>
 
+      {/* New Handover Notes field */}
       <div>
         <label style={labelStyle}>Handover Notes:</label>
         <textarea

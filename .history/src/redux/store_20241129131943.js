@@ -5,7 +5,7 @@ import tasksSlice  from './features/tasksSlice'
 const store = configureStore({
   reducer: {
     shift: shiftReducer,
-    tasks: tasksSlice,
+    tasks: tasksReducer,
     
   },
 });

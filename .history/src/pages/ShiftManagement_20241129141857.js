@@ -6,22 +6,17 @@ const ShiftManagement = () => {
   const dispatch = useDispatch();
   const { shifts, timeFormat } = useSelector((state) => state.shift);
 
-  // List of dummy users for workforce
-  const dummyUsers = ["Operator A", "Operator B", "Operator C", "Operator D"];
-
   // State for new shift details
   const [newShift, setNewShift] = useState({ name: "", start: "", end: "", location: "", workforce: [] });
 
   // State to track the shift being edited
   const [editShift, setEditShift] = useState(null);
 
-  // Handle changes in input fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewShift({ ...newShift, [name]: value });
   };
 
-  // Add new shift
   const handleAddShift = () => {
     if (newShift.name && newShift.start && newShift.end) {
       dispatch(addShift(newShift));
@@ -29,31 +24,19 @@ const ShiftManagement = () => {
     }
   };
 
-  // Update existing shift fields
   const handleUpdateShift = (id, field, value) => {
     dispatch(updateShift({ id, updates: { [field]: value } }));
   };
 
-  // Handle shift edit functionality
   const handleEditShift = (shift) => {
+    // Set the shift to be edited
     setEditShift({ ...shift });
   };
 
-  // Save edited shift
   const handleSaveEditShift = () => {
     if (editShift) {
       dispatch(updateShift({ id: editShift.id, updates: { ...editShift } }));
       setEditShift(null); // Exit edit mode
-    }
-  };
-
-  // Add a user to the workforce of the shift
-  const handleAddToWorkforce = (user) => {
-    if (editShift) {
-      setEditShift({
-        ...editShift,
-        workforce: [...editShift.workforce, user],
-      });
     }
   };
 
@@ -92,7 +75,9 @@ const ShiftManagement = () => {
                     <input
                       type="text"
                       value={editShift.location}
-                      onChange={(e) => setEditShift({ ...editShift, location: e.target.value })}
+                      onChange={(e) =>
+                        setEditShift({ ...editShift, location: e.target.value })
+                      }
                     />
                   ) : (
                     shift.location
@@ -100,30 +85,16 @@ const ShiftManagement = () => {
                 </td>
                 <td>
                   {editShift?.id === shift.id ? (
-                    <div>
-                      <input
-                        type="text"
-                        value={editShift.workforce.join(", ")}
-                        onChange={(e) =>
-                          setEditShift({
-                            ...editShift,
-                            workforce: e.target.value.split(",").map((w) => w.trim()),
-                          })
-                        }
-                      />
-                      <div style={{ marginTop: "10px" }}>
-                        <h4>Select Workforce</h4>
-                        {dummyUsers.map((user, index) => (
-                          <button
-                            key={index}
-                            onClick={() => handleAddToWorkforce(user)}
-                            style={{ marginRight: "10px" }}
-                          >
-                            {user}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                    <input
+                      type="text"
+                      value={editShift.workforce.join(", ")}
+                      onChange={(e) =>
+                        setEditShift({
+                          ...editShift,
+                          workforce: e.target.value.split(",").map((w) => w.trim()),
+                        })
+                      }
+                    />
                   ) : (
                     shift.workforce.join(", ") || "None"
                   )}
