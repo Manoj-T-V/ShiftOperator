@@ -7,7 +7,7 @@ function App() {
     <Router>
     <Routes>
       <Route path="/shift" element={<ShiftManagement/>}></Route>
-      <Route path="/" element={<AddTaskForm/>}></Route>
+      <Route path="/shift" element={<ShiftManagement/>}></Route>
     </Routes>
     </Router>
   );
